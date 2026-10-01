@@ -1,0 +1,572 @@
+@import "tailwindcss";
+
+@theme {
+  --color-rojo-marfil: #E12927;
+  --color-negro-cafe: #1F1410;
+  --color-blanco: #FFFFFF;
+  --color-rosa-claro: #FCEAE9;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+
+/*
+ * src/tailwind.css — Tailwind v4 para Café Marfil
+ *
+ * - Sin "preflight" (el reset de Tailwind), para no alterar el CSS que ya tienes en las demás pantallas.
+ * - Las utilidades llevan `important`, así ganan siempre frente a reglas globales
+ *   como `button { ... }` o `header { ... }` de tu CSS actual.
+ * - Los colores apuntan a tus variables (--rojo-marfil, --negro-cafe, etc.),
+ *   así el modo oscuro (data-theme="dark") funciona solo.
+ */
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) important;
+
+/* Tu app activa el modo oscuro con <html data-theme="dark"> */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  --color-marfil: var(--rojo-marfil);
+  --color-rosa: var(--rosa-claro);
+  --color-cafe: var(--negro-cafe);
+  --color-surface: var(--blanco);
+  --color-tinted: var(--bg-surface-tinted);
+  --color-muted: var(--text-light);
+  --color-line: var(--border-medium);
+}
+
+@theme {
+  --animate-menu-in: menu-in 0.16s ease-out;
+
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.97);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* ==========================================================================
+   CAFÉ MARFIL URBAN BRUNCH & ALL-DAY DINING — DURANGO, MÉXICO
+   Directrices de Diseño Oficiales:
+   - Rojo Marfil: #E12927 (Acento primario, CTAs, badges 2x1/Nuevo, precios destacados)
+   - Negro Café:  #1F1410 (Tinta tipográfica dominante, trazado de isotipo e iconografía)
+   - Blanco:      #FFFFFF (Lienzo principal / Primary Canvas)
+   - Rosa Claro:  #FCEAE9 (Fondo secundario decorativo, postres, frappés, cintillos, hover)
+   ========================================================================== */
+
+:root {
+  /* Tokens Cromáticos Obligatorios */
+  --rojo-marfil: #E12927;
+  --negro-cafe: #1F1410;
+  --blanco: #FFFFFF;
+  --rosa-claro: #FCEAE9;
+
+  /* Superficies y Canvas con alto contraste */
+  --bg-app: #FAF7F5;
+  --bg-surface: #FFFFFF;
+  --bg-surface-soft: #FFFFFF;
+  --bg-surface-tinted: #FCEAE9;
+  --bg-surface-subtle: #F5EFEB;
+  --border-light: rgba(31, 20, 16, 0.15);
+  --border-medium: rgba(31, 20, 16, 0.25);
+  --border-pink: rgba(225, 41, 39, 0.3);
+
+  /* Texto */
+  --text-main: #1F1410;
+  --text-muted: #574640;
+  --text-light: #8E7A74;
+  --text-inverse: #FFFFFF;
+  --text-accent: #E12927;
+
+  /* Tipografías */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Radios y Contenedores Urban Brunch (Estética estructurada y cuadrada) */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-full: 6px;
+
+  /* Sombras Urban Brunch refinadas */
+  --shadow-sm: 0 2px 8px rgba(31, 20, 16, 0.04);
+  --shadow-md: 0 8px 24px rgba(31, 20, 16, 0.08);
+  --shadow-lg: 0 16px 36px rgba(31, 20, 16, 0.12);
+  --shadow-hover: 0 12px 28px rgba(225, 41, 39, 0.15);
+
+  --nav-height: 76px;
+  --bottom-nav-height: 70px;
+  --max-content-width: 1220px;
+}
+
+/* Modo Nocturno Urbano Sutil */
+[data-theme="dark"] {
+  --bg-app: #150E0C;
+  --bg-surface: #1F1410;
+  --bg-surface-soft: #281B16;
+  --bg-surface-tinted: #2E1B17;
+  --bg-surface-subtle: #241713;
+  --border-light: rgba(252, 234, 233, 0.12);
+  --border-medium: rgba(252, 234, 233, 0.22);
+  --border-pink: rgba(225, 41, 39, 0.35);
+
+  --text-main: #FFFFFF;
+  --text-muted: #E0CFCB;
+  --text-light: #B49E99;
+  --text-inverse: #1F1410;
+  --text-accent: #FF5A58;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.6);
+  --shadow-hover: 0 12px 28px rgba(225, 41, 39, 0.35);
+}
+
+[data-theme="dark"] .elephant-logo-wrapper img[src*="logo_negro_cafe.png"] {
+  filter: brightness(0) invert(1);
+}
+
+/* Reset y Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-main);
+  background-color: var(--bg-app);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Tipografía Editorial: Fraunces & Plus Jakarta Sans & Space Mono */
+h1,
+.font-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+}
+
+h2,
+.font-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text-main);
+}
+
+h3,
+.font-h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-main);
+}
+
+p,
+.font-body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.font-secondary {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* Metadatos, Onzas, Precios y Tags Técnicos (Space Mono Mayúsculas) */
+.font-mono,
+.price-tag,
+.ounces-tag,
+.meta-code {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.font-small {
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: var(--font-body);
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--rojo-marfil);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   BOTONES Y ACCIONES URBAN BRUNCH (Rojo Marfil #E12927 y Negro Café #1F1410)
+   ========================================================================== */
+
+/* Botón CTA Primario: Rojo Marfil */
+.btn-primary,
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  background-color: var(--rojo-marfil);
+  color: #FFFFFF !important;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 14px rgba(225, 41, 39, 0.28);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.btn-primary:hover,
+.btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(225, 41, 39, 0.38);
+  filter: brightness(1.06);
+}
+
+.btn-primary:active,
+.btn-cta:active {
+  transform: translateY(0);
+}
+
+/* Botón Secundario: Contorno Negro Café o Rosa Claro */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1.5px solid var(--text-main);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radius-full);
+  transition: all 0.18s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--negro-cafe);
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background-color: #FFFFFF;
+  color: #1F1410 !important;
+}
+
+/* Botón Soft Pink (Postres / Frappés / Promos lúdicas) */
+.btn-pink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--rosa-claro);
+  color: var(--rojo-marfil) !important;
+  border: 1px solid var(--border-pink);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.7rem 1.35rem;
+  border-radius: var(--radius-full);
+  transition: all 0.18s ease;
+}
+
+.btn-pink:hover {
+  background-color: #F8D8D6;
+  transform: translateY(-1px);
+}
+
+/* Botón Icono Circular Concéntrico */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: var(--negro-cafe);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  transition: all 0.18s ease;
+}
+
+[data-theme="dark"] .btn-icon {
+  color: #FFFFFF;
+}
+
+.btn-icon:hover {
+  background-color: var(--rosa-claro);
+  border-color: var(--rojo-marfil);
+  color: var(--rojo-marfil);
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   TARJETAS Y CONTENEDORES URBAN BRUNCH (Bordes limpios, contenedores circulares)
+   ========================================================================== */
+
+.marfil-card {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.marfil-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-medium);
+}
+
+/* Tarjeta con fondo Rosa Claro para postres, frappés y dinámicas */
+.card-pink {
+  background-color: var(--rosa-claro);
+  border-color: var(--border-pink);
+}
+
+[data-theme="dark"] .card-pink {
+  background-color: #2E1B17;
+  border-color: rgba(225, 41, 39, 0.3);
+}
+
+/* Badges de Promociones ("2x1", "Nuevo", Precios) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Badge Rojo Marfil: Máxima Energía */
+.badge-red,
+.badge-rojo {
+  background-color: var(--rojo-marfil);
+  color: #FFFFFF;
+}
+
+/* Badge Rosa Muy Claro: Suave y contemporáneo */
+.badge-pink,
+.badge-rosa {
+  background-color: var(--rosa-claro);
+  color: var(--rojo-marfil);
+  border: 1px solid var(--border-pink);
+}
+
+/* Badge Negro Café */
+.badge-dark,
+.badge-negro {
+  background-color: var(--negro-cafe);
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .badge-dark {
+  background-color: #FFFFFF;
+  color: #1F1410;
+}
+
+/* ==========================================================================
+   LAYOUT PRINCIPAL
+   ========================================================================== */
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  max-width: var(--max-content-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.5rem 1.25rem 5.5rem 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    padding: 0.75rem 2rem 4rem 2rem;
+  }
+}
+
+/* Animaciones sutiles */
+.fade-in {
+  animation: fadeIn 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mhSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mhRise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mhDiscIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-mh-spin {
+  animation: mhSpin 28s linear infinite;
+}
+
+.animate-mh-rise {
+  animation: mhRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-mh-disc {
+  animation: mhDiscIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes marfilMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marfil-marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marfilMarquee 36s linear infinite;
+}
+
+.animate-marfil-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marfil-marquee {
+    animation-duration: 90s;
+  }
+}
+
+/* Cintillo superior decorativo de promociones (Two Hands / Grind style) */
+.promo-strip-top {
+  background-color: var(--rosa-claro);
+  color: var(--negro-cafe);
+  padding: 0.45rem 1rem;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+[data-theme="dark"] .promo-strip-top {
+  background-color: #2E1B17;
+  color: #FFFFFF;
+}
+
+.promo-strip-highlight {
+  color: var(--rojo-marfil);
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
