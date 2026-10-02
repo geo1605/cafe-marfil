@@ -12,10 +12,13 @@ export default function ActivitiesScreen({
   const [searchTerm, setSearchTerm] = useState('');
 
   const categorias = [
-    { id: 'todas', label: 'Todas las actividades' },
-    { id: 'juegos', label: 'Juegos de mesa (+60 títulos)' },
-    { id: 'musica', label: 'Música en vivo & Mezcal' },
-    { id: 'talleres', label: 'Talleres & Catas' }
+    { id: 'todas', label: 'Todas' },
+    { id: 'cine', label: '🎬 Cine & Proyecciones' },
+    { id: 'talleres', label: '🎨 Talleres Creativos' },
+    { id: 'musica', label: '🎵 Música en Vivo' },
+    { id: 'juegos', label: '🎲 Juegos de Mesa' },
+    { id: 'privados', label: '🎉 Eventos Privados' },
+    { id: 'temporada', label: '🎄 Temporada' },
   ];
 
   const filteredActividades = actividades.filter((act) => {
@@ -31,15 +34,12 @@ export default function ActivitiesScreen({
     <div className="flex flex-col gap-8 fade-in pb-16">
       {/* Encabezado Editorial */}
       <div className="max-w-2xl text-left">
-        <span className="inline-flex items-center gap-1.5 mb-2 text-xs font-bold font-mono tracking-widest text-[#E12927] uppercase px-3.5 py-1.5 rounded-sm bg-[#FCEAE9] border-2 border-[#E12927]/30 shadow-xs">
-          <Sparkles size={14} />
-          <span>LUDOTECA & NOCHES DE SALA · DURANGO</span>
-        </span>
+
         <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1F1410] tracking-tight mb-3">
           Actividades & Eventos
         </h1>
         <p className="font-body text-sm sm:text-base text-[#1F1410]/80 leading-relaxed font-medium">
-          Noches de juegos con anfitrión que explica las reglas, conciertos acústicos con mezcal artesanal duranguense y talleres de cata de especialidad. Elige tu plan y aparta tu lugar.
+          Noches de cine, talleres de pintura neón, flash tattoos, música en vivo, juegos de mesa y eventos privados. Elige tu experiencia y aparta tu lugar.
         </p>
       </div>
 
@@ -130,23 +130,13 @@ export default function ActivitiesScreen({
                 onSelectActivity(act);
               }}
             >
-              {/* Imagen con badges */}
+              {/* Imagen */}
               <div className="relative h-52 bg-stone-100 overflow-hidden border-b-2 border-stone-200">
                 <img
                   src={act.imagen}
                   alt={act.nombre}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
-                  <span className="px-3 py-1 rounded-sm font-mono text-[11px] font-bold uppercase tracking-wider bg-[#1F1410] text-white shadow-md">
-                    {act.categoria}
-                  </span>
-                  {act.lugaresDisponibles <= 5 && (
-                    <span className="px-3 py-1 rounded-sm font-mono text-[11px] font-bold uppercase tracking-wider bg-[#E12927] text-white shadow-md animate-pulse">
-                      ¡Solo {act.lugaresDisponibles} lugares!
-                    </span>
-                  )}
-                </div>
               </div>
 
               {/* Contenido de la tarjeta */}

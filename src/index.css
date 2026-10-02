@@ -8,6 +8,10 @@
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Space Mono', monospace;
+  /* Menú tipografías */
+  --font-menu-title:   'Caprasimo', 'Fredoka One', cursive;
+  --font-menu-script:  'Dancing Script', 'Pacifico', cursive;
+  --font-menu-product: 'Nunito', 'Nunito Sans', 'Plus Jakarta Sans', sans-serif;
 }
 
 
@@ -91,6 +95,16 @@
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Space Mono', monospace;
+
+  /* ── Tipografías exclusivas del Menú ─────────────────────────────────────
+     Diseño de pizarrón estilo cafetería retro:
+     · --font-menu-title   → "CAFÉ", "FRAPPÉS", "MALTEADAS" – display groovy/70s
+     · --font-menu-script  → "Calientes", "Regulares", "Síguenos en" – handwritten
+     · --font-menu-product → nombres de productos y precios – Nunito sans-serif
+     ──────────────────────────────────────────────────────────────────────── */
+  --font-menu-title:   'Caprasimo', 'Fredoka One', cursive;
+  --font-menu-script:  'Dancing Script', 'Pacifico', cursive;
+  --font-menu-product: 'Nunito', 'Nunito Sans', 'Plus Jakarta Sans', sans-serif;
 
   /* Radios y Contenedores Urban Brunch (Estética estructurada y cuadrada) */
   --radius-xs: 2px;

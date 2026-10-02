@@ -305,7 +305,7 @@ export default function MenuScreen({ onOrderNow, onNavigate }) {
             {/* Título de la Sección ("Seccion 1", "Seccion 2") idéntico al diseño */}
             <div className="flex items-baseline justify-between mb-6">
               <div className="flex flex-col">
-                <h2 className="font-display text-4xl lg:text-5xl font-normal text-[#1F1410] tracking-tight">
+                <h2 className="text-4xl lg:text-5xl font-normal text-[#1F1410] tracking-tight" style={{ fontFamily: 'var(--font-menu-title)' }}>
                   {seccion.numero}
                 </h2>
                 <span className="font-mono text-xs text-stone-500 font-semibold tracking-wider uppercase mt-1">
@@ -362,12 +362,18 @@ export default function MenuScreen({ onOrderNow, onNavigate }) {
                     {/* Espaciador transparente */}
                     <div className="h-12 sm:h-14 w-full pointer-events-none" />
 
-                    {/* TÍTULO EN MAYÚSCULAS CON FUENTE OFICIAL DISPLAY */}
+                    {/* TÍTULO EN MAYÚSCULAS CON FUENTE NUNITO EXTRABOLD */}
                     <div className="w-full text-center mt-1 flex flex-col items-center">
-                      <h3 className="font-display font-bold text-base sm:text-lg text-[#1F1410] tracking-tight leading-tight uppercase">
+                      <h3
+                        className="font-bold text-base sm:text-lg text-[#1F1410] tracking-tight leading-tight uppercase"
+                        style={{ fontFamily: 'var(--font-menu-product)' }}
+                      >
                         {producto.nombre}
                       </h3>
-                      <span className="font-mono text-[11px] text-stone-500 font-bold mt-0.5">
+                      <span
+                        className="text-[11px] text-stone-500 font-extrabold mt-0.5"
+                        style={{ fontFamily: 'var(--font-menu-product)' }}
+                      >
                         {producto.precio}
                       </span>
                     </div>
@@ -399,8 +405,10 @@ export default function MenuScreen({ onOrderNow, onNavigate }) {
         {/* Cabecera editorial móvil con control de acordeones */}
         <div className="flex items-center justify-between px-1 pt-2 pb-1">
           <div>
-
-            <h2 className="font-display font-extrabold text-2xl text-[#1F1410] tracking-tight">
+            <h2
+              className="font-extrabold text-2xl text-[#1F1410] tracking-tight"
+              style={{ fontFamily: 'var(--font-menu-title)' }}
+            >
               Nuestras Secciones
             </h2>
           </div>
@@ -432,7 +440,10 @@ export default function MenuScreen({ onOrderNow, onNavigate }) {
                   </span>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-display font-bold text-lg text-[#1F1410] tracking-tight">
+                      <span
+                        className="font-bold text-lg text-[#1F1410] tracking-tight"
+                        style={{ fontFamily: 'var(--font-menu-title)' }}
+                      >
                         {seccion.numero}
                       </span>
                       <span className="font-mono text-[10px] font-semibold text-stone-500 uppercase">
@@ -481,11 +492,17 @@ export default function MenuScreen({ onOrderNow, onNavigate }) {
                             {producto.badge}
                           </span>
                         )}
-                        <h4 className="font-display font-bold text-base text-[#1F1410] uppercase tracking-tight leading-tight truncate group-hover:text-[#E12927] transition-colors">
+                        <h4
+                          className="font-bold text-base text-[#1F1410] uppercase tracking-tight leading-tight truncate group-hover:text-[#E12927] transition-colors"
+                          style={{ fontFamily: 'var(--font-menu-product)' }}
+                        >
                           {producto.nombre}
                         </h4>
                         <div className="flex items-center gap-2 mt-0.5">
-                          <span className="font-mono text-xs text-[#E12927] font-black">
+                          <span
+                            className="text-xs text-[#E12927] font-black"
+                            style={{ fontFamily: 'var(--font-menu-product)' }}
+                          >
                             {producto.precio}
                           </span>
                           <span className="font-mono text-[10px] text-stone-400 font-medium">
@@ -554,7 +571,10 @@ export default function MenuScreen({ onOrderNow, onNavigate }) {
 
             {/* CABECERA: TÍTULO Y METADATOS */}
             <div className="w-full text-center shrink-0 mt-1 mb-2">
-              <h3 className="font-display font-bold text-2xl sm:text-3xl text-[#1F1410] tracking-tight uppercase leading-tight">
+              <h3
+                className="font-bold text-2xl sm:text-3xl text-[#1F1410] tracking-tight uppercase leading-tight"
+                style={{ fontFamily: 'var(--font-menu-product)' }}
+              >
                 {selectedProduct.nombre}
               </h3>
               <div className="flex items-center justify-center gap-2 mt-1.5">
@@ -586,11 +606,12 @@ export default function MenuScreen({ onOrderNow, onNavigate }) {
             {/* PIE DE MODAL: ORIGEN Y BOTÓN ROJO DE PRECIO EN LA DERECHA */}
             <div className="w-full flex items-center justify-between pt-3 border-t border-stone-400/40 shrink-0">
 
-              {/* BOTÓN ROJO DE PRECIO IDÉNTICO AL DISEÑO DE REFERENCIA */}
+              {/* BOTÓN ROJO DE PRECIO — Nunito ExtraBold */}
               <button
                 type="button"
                 onClick={() => handleOrderProduct(selectedProduct)}
-                className="bg-[#E12927] hover:bg-[#C81E1C] active:scale-95 text-white font-mono font-bold text-2xl sm:text-3xl px-6 py-2 rounded-2xl shadow-md transition-all cursor-pointer flex items-center justify-center tracking-tight"
+                className="bg-[#E12927] hover:bg-[#C81E1C] active:scale-95 text-white font-bold text-2xl sm:text-3xl px-6 py-2 rounded-2xl shadow-md transition-all cursor-pointer flex items-center justify-center tracking-tight"
+                style={{ fontFamily: 'var(--font-menu-product)' }}
                 title="Pedir este producto"
               >
                 <span>{selectedProduct.precio.replace(' MXN', '')}</span>

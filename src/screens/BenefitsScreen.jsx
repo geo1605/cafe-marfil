@@ -32,24 +32,19 @@ export default function BenefitsScreen({
     <div className="flex flex-col gap-9 fade-in pb-16">
       {/* Encabezado */}
       <div className="max-w-2xl text-left">
-        <span className="inline-flex items-center gap-1.5 mb-2 text-xs font-bold font-mono tracking-widest text-[#E12927] uppercase px-3.5 py-1.5 rounded-sm bg-[#FCEAE9] border-2 border-[#E12927]/30 shadow-xs">
-          <Award size={14} />
-          <span>PASAPORTE DIGITAL & FIDELIDAD · CLUB MARFIL</span>
-        </span>
+
         <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1F1410] tracking-tight mb-3">
           Mis Beneficios & Sellos
         </h1>
         <p className="font-body text-sm sm:text-base text-[#1F1410]/80 leading-relaxed font-medium">
-          Cada visita a Café Marfil suma a tu pasaporte digital. Desbloquea frappés de confitería artesanal, descuentos en combos monumentales Mamut y experiencias exclusivas en Durango.
         </p>
       </div>
 
-      {/* Tarjeta de Sellos Digital ("Pasaporte Marfil") - 100% Sólida con Alto Contraste */}
+      {/* Tarjeta de Sellos Digital ("Pasaporte Marfil") - 100% SÃ³lida con Alto Contraste */}
       <div className="bg-[#FCEAE9] rounded-lg border-2 border-[#E12927]/40 p-6 sm:p-8 flex flex-col gap-6 shadow-lg">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-sm font-mono text-[11px] font-bold uppercase tracking-wider bg-[#E12927] text-white shadow-xs mb-3">
-              <Award size={14} />
               <span>NIVEL: {perfil.nivelFidelidad.toUpperCase()}</span>
             </div>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#1F1410] leading-snug">
@@ -67,7 +62,7 @@ export default function BenefitsScreen({
           </div>
         </div>
 
-        {/* Visualización de Sellos (8 slots) */}
+        {/* VisualizaciÃ³n de Sellos (8 slots) */}
         <div className="bg-white rounded-md border-2 border-stone-300 p-4 sm:p-6 shadow-sm">
           <div className="grid grid-cols-4 sm:grid-cols-8 gap-3 sm:gap-4">
             {Array.from({ length: perfil.sellosTotalesParaMeta }).map((_, idx) => {
@@ -88,7 +83,7 @@ export default function BenefitsScreen({
                       <div className="relative flex items-center justify-center">
                         <Coffee size={20} />
                         <span className="absolute -bottom-1.5 -right-2 bg-white text-[#E12927] text-[9px] font-black w-4 h-4 rounded-xs flex items-center justify-center shadow-xs border border-[#E12927]/30">
-                          ✓
+                          âœ“
                         </span>
                       </div>
                     ) : (
@@ -96,7 +91,7 @@ export default function BenefitsScreen({
                     )}
                   </div>
                   <span className="font-mono text-[10px] font-bold text-[#6B5A52] tracking-wider uppercase">
-                    {isStamped ? `Sello ${idx + 1}` : isNext ? '¡Siguiente!' : `Sello ${idx + 1}`}
+                    {isStamped ? `Sello ${idx + 1}` : isNext ? 'Â¡Siguiente!' : `Sello ${idx + 1}`}
                   </span>
                 </div>
               );
@@ -108,7 +103,7 @@ export default function BenefitsScreen({
         <div className="bg-white rounded-md p-4 border-l-4 border-l-[#E12927] border-2 border-stone-300 flex items-center gap-3 shadow-xs">
           <Sparkles size={20} className="text-[#E12927] shrink-0" />
           <span className="font-body text-xs sm:text-sm text-[#1F1410] font-medium">
-            Próximo regalo al completar 8 sellos: <strong>Copa de Fresas Estilo Dubái con Pistache & Kataifi</strong> de cortesía.
+            PrÃ³ximo regalo al completar 8 sellos: <strong>Copa de Fresas Estilo DubÃ¡i con Pistache & Kataifi</strong> de cortesÃ­a.
           </span>
         </div>
       </div>
@@ -117,7 +112,7 @@ export default function BenefitsScreen({
       <div className="flex flex-col gap-4">
         <div>
           <h2 className="font-display text-2xl font-bold text-[#1F1410]">Beneficios Disponibles</h2>
-          <p className="font-body text-xs sm:text-sm text-[#5A4840]">Presiona en cualquier beneficio para generar el código QR y mostrarlo en caja.</p>
+          <p className="font-body text-xs sm:text-sm text-[#5A4840]">Presiona en cualquier beneficio para generar el cÃ³digo QR y mostrarlo en caja.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -163,7 +158,7 @@ export default function BenefitsScreen({
       {/* Beneficios por Desbloquear */}
       <div className="flex flex-col gap-4">
         <div>
-          <h3 className="font-display text-xl font-bold text-[#1F1410]">Próximos Beneficios por Desbloquear</h3>
+          <h3 className="font-display text-xl font-bold text-[#1F1410]">PrÃ³ximos Beneficios por Desbloquear</h3>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -213,7 +208,7 @@ export default function BenefitsScreen({
                       {b.titulo}
                     </h4>
                     <span className="font-mono text-xs text-[#8E7A74]">
-                      {b.fechaUso} · Folio {b.codigo}
+                      {b.fechaUso} Â· Folio {b.codigo}
                     </span>
                   </div>
                 </div>
@@ -234,7 +229,7 @@ export default function BenefitsScreen({
           subtitulo={selectedBenefit.subtitulo}
           codigo={selectedBenefit.codigo}
           vigencia={selectedBenefit.vigencia}
-          instruccion="Muestra este código al barista o mesero al momento de pagar tu cuenta en mostrador."
+          instruccion="Muestra este cÃ³digo al barista o mesero al momento de pagar tu cuenta en mostrador."
         />
       )}
     </div>

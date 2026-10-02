@@ -44,10 +44,7 @@ export default function MyReservationsScreen({
       {/* Encabezado */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="max-w-xl text-left">
-          <span className="inline-flex items-center gap-1.5 mb-2 text-xs font-bold font-mono tracking-widest text-[#E12927] uppercase px-3.5 py-1.5 rounded-sm bg-[#FCEAE9] border-2 border-[#E12927]/30 shadow-xs">
-            <Calendar size={14} />
-            <span>ADMINISTRA TUS VISITAS · DURANGO</span>
-          </span>
+
           <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1F1410] tracking-tight mb-2">
             Mis Reservaciones
           </h1>

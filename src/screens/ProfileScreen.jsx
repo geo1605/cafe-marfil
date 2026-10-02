@@ -56,10 +56,7 @@ export default function ProfileScreen({
     <div className="flex flex-col gap-8 fade-in pb-16">
       {/* Encabezado */}
       <div className="max-w-2xl text-left">
-        <span className="inline-flex items-center gap-1.5 mb-2 text-xs font-bold font-mono tracking-widest text-[#E12927] uppercase px-3.5 py-1.5 rounded-sm bg-[#FCEAE9] border-2 border-[#E12927]/30 shadow-xs">
-          <UserCheck size={14} />
-          <span>TU ESPACIO MARFIL · DURANGO, DGO.</span>
-        </span>
+
         <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1F1410] tracking-tight mb-3">
           Mi Perfil & Fidelidad
         </h1>
