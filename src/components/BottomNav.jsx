@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Compass, CalendarPlus, Gift, User } from 'lucide-react';
+import { Home, UtensilsCrossed, CalendarPlus, Compass, User } from 'lucide-react';
 import { sounds } from '../utils/audio';
 
 export default function BottomNav({ activeScreen, setActiveScreen }) {
@@ -28,17 +28,17 @@ export default function BottomNav({ activeScreen, setActiveScreen }) {
           <span className="font-body text-[10px] tracking-tight mt-0.5 font-bold">Inicio</span>
         </button>
 
-        {/* Actividades */}
+        {/* Menú */}
         <button
           className={`flex-1 flex flex-col items-center justify-center py-1.5 rounded-lg transition-all duration-200 cursor-pointer ${
-            activeScreen === 'actividades' || activeScreen === 'detalle_actividad'
+            activeScreen === 'menu'
               ? 'bg-[#FCEAE9] text-[#E12927] font-bold border-2 border-[#E12927] shadow-xs'
               : 'text-[#1F1410] hover:text-[#E12927]'
           }`}
-          onClick={() => handleNav('actividades')}
+          onClick={() => handleNav('menu')}
         >
-          <Compass size={18} />
-          <span className="font-body text-[10px] tracking-tight mt-0.5 font-bold">Ludoteca</span>
+          <UtensilsCrossed size={18} />
+          <span className="font-body text-[10px] tracking-tight mt-0.5 font-bold">Menú</span>
         </button>
 
         {/* Reservar — Botón Central Sólido Flotante Cuadrado */}
@@ -61,17 +61,17 @@ export default function BottomNav({ activeScreen, setActiveScreen }) {
           </span>
         </button>
 
-        {/* Beneficios */}
+        {/* Actividades */}
         <button
           className={`flex-1 flex flex-col items-center justify-center py-1.5 rounded-lg transition-all duration-200 cursor-pointer ${
-            activeScreen === 'beneficios'
+            activeScreen === 'actividades' || activeScreen === 'detalle_actividad'
               ? 'bg-[#FCEAE9] text-[#E12927] font-bold border-2 border-[#E12927] shadow-xs'
               : 'text-[#1F1410] hover:text-[#E12927]'
           }`}
-          onClick={() => handleNav('beneficios')}
+          onClick={() => handleNav('actividades')}
         >
-          <Gift size={18} />
-          <span className="font-body text-[10px] tracking-tight mt-0.5 font-bold">Club</span>
+          <Compass size={18} />
+          <span className="font-body text-[10px] tracking-tight mt-0.5 font-bold">Ludoteca</span>
         </button>
 
         {/* Perfil */}

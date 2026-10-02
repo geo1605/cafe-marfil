@@ -16,6 +16,9 @@ export default function BranchesScreen({
   onReserveBranch,
   onFilterBranchActivities
 }) {
+  const [selectedMapId, setSelectedMapId] = React.useState(sucursales[0]?.id || 'porras-matriz');
+  const currentBranch = sucursales.find((s) => s.id === selectedMapId) || sucursales[0];
+
   return (
     <div className="flex flex-col gap-8 fade-in pb-16">
       {/* Encabezado */}
@@ -28,7 +31,7 @@ export default function BranchesScreen({
           Sucursales Café Marfil
         </h1>
         <p className="font-body text-sm sm:text-base text-[#1F1410]/80 leading-relaxed font-medium">
-          Tres atmósferas con identidad propia: terraza colonial en el Centro Histórico, cafetería al aire libre en Paseo Constitución y espacio contemporáneo en Lomas del Parque.
+          Tres atmósferas con identidad propia: Casona colonial en Calle Porras (Matriz), espacio acogedor con ludoteca en Barrio del Calvario y terraza contemporánea al aire libre en Plaza Vizcaya.
         </p>
       </div>
 
@@ -147,6 +150,54 @@ export default function BranchesScreen({
           </article>
         ))}
       </div>
+
+      {/* Mapa interactivo de Google Maps */}
+      <section className="bg-white rounded-2xl border-2 border-stone-300 p-6 sm:p-8 shadow-md text-left">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+          <div>
+            <span className="font-mono text-xs font-bold text-[#E12927] uppercase tracking-wider block">
+              MAPA INTERACTIVO EN TIEMPO REAL
+            </span>
+            <h3 className="font-display text-2xl font-bold text-[#1F1410] mt-1">
+              Ubicación de {currentBranch.nombre}
+            </h3>
+            <p className="font-body text-xs text-stone-600 mt-0.5">
+              {currentBranch.direccion} · Tel: {currentBranch.telefono}
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {sucursales.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => {
+                  sounds.playClick();
+                  setSelectedMapId(s.id);
+                }}
+                className={`font-mono text-xs font-bold px-3 py-1.5 rounded-md transition-all cursor-pointer ${
+                  selectedMapId === s.id
+                    ? 'bg-[#E12927] text-white shadow-xs'
+                    : 'bg-stone-100 hover:bg-stone-200 text-[#1F1410]'
+                }`}
+              >
+                {s.nombre.replace('Sucursal ', '')}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="w-full h-80 sm:h-96 rounded-xl overflow-hidden border border-stone-200 shadow-inner">
+          <iframe
+            title={`Mapa de ${currentBranch.nombre}`}
+            src={currentBranch.mapEmbedUrl}
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+      </section>
     </div>
   );
 }

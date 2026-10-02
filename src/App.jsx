@@ -16,6 +16,8 @@ import ReservationSuccessScreen from './screens/ReservationSuccessScreen';
 import MyReservationsScreen from './screens/MyReservationsScreen';
 import BranchesScreen from './screens/BranchesScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import HeroSection from './components/HeroSection';
+import MenuScreen from './screens/MenuScreen';
 
 // Datos oficiales
 import {
@@ -30,14 +32,47 @@ import {
 import { sounds } from './utils/audio';
 
 export default function App() {
-  // 1. Estado de Pantalla Activa
-  const [activeScreen, setActiveScreen] = useState('inicio');
+  // 1. Estado de Pantalla Activa con soporte para URL /hero, /menu o hashes
+  const [activeScreen, setActiveScreen] = useState(() => {
+    const path = window.location.pathname.toLowerCase();
+    const hash = window.location.hash.toLowerCase();
+    if (path === '/hero' || hash === '#/hero' || hash === '#hero') {
+      return 'hero';
+    }
+    if (path === '/menu' || hash === '#/menu' || hash === '#menu') {
+      return 'menu';
+    }
+    return 'inicio';
+  });
+
+  // Escuchar cambios de URL (popstate y hashchange) para soportar /hero y /menu
+  useEffect(() => {
+    const handleUrlChange = () => {
+      const path = window.location.pathname.toLowerCase();
+      const hash = window.location.hash.toLowerCase();
+      if (path === '/hero' || hash === '#/hero' || hash === '#hero') {
+        setActiveScreen('hero');
+      } else if (path === '/menu' || hash === '#/menu' || hash === '#menu') {
+        setActiveScreen('menu');
+      } else if (activeScreen === 'hero' || activeScreen === 'menu') {
+        setActiveScreen('inicio');
+      }
+    };
+
+    window.addEventListener('popstate', handleUrlChange);
+    window.addEventListener('hashchange', handleUrlChange);
+    return () => {
+      window.removeEventListener('popstate', handleUrlChange);
+      window.removeEventListener('hashchange', handleUrlChange);
+    };
+  }, [activeScreen]);
 
   // 2. Estado de Navegación contextual
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [selectedPromo, setSelectedPromo] = useState(null);
   const [lastConfirmedReservation, setLastConfirmedReservation] = useState(null);
   const [reservationWizardInitialData, setReservationWizardInitialData] = useState(null);
+  const [initialMenuProduct, setInitialMenuProduct] = useState(null);
 
   // 3. Tema (Modo Oscuro / Claro) con persistencia
   const [theme, setTheme] = useState(() => {
@@ -98,6 +133,13 @@ export default function App() {
   // Métodos de navegación y acciones
   const navigateTo = (screenId) => {
     setActiveScreen(screenId);
+    if (screenId === 'hero') {
+      window.history.pushState({}, '', '/hero');
+    } else {
+      if (window.location.pathname.toLowerCase() === '/hero' || window.location.hash.toLowerCase().includes('hero')) {
+        window.history.pushState({}, '', '/');
+      }
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -218,7 +260,7 @@ export default function App() {
 
   return (
     <div className="app-container">
-      {/* Header Fijo */}
+      {/* Header Fijo con soporte Overlay */}
       <Header
         activeScreen={activeScreen}
         setActiveScreen={(s) => {
@@ -232,7 +274,21 @@ export default function App() {
       />
 
       {/* Contenido Principal con Enrutador React */}
-      <main className="main-content" id="main-content">
+      <main className={activeScreen === 'hero' || activeScreen === 'inicio' ? 'w-full p-0 m-0 max-w-none flex-1' : 'main-content'} id="main-content">
+        {/* PROTOTIPO HERO COFFEE & CO. (/hero) */}
+        {activeScreen === 'hero' && (
+          <HeroSection
+            onOrderNow={(drink) => {
+              setReservationWizardInitialData({
+                tipo: 'mesa',
+                nota: `Orden: ${drink.nombre}`
+              });
+              navigateTo('reservar');
+            }}
+            onNavigateBack={() => navigateTo('inicio')}
+          />
+        )}
+
         {/* INICIO */}
         {activeScreen === 'inicio' && (
           <HomeScreen
@@ -240,10 +296,29 @@ export default function App() {
               setReservationWizardInitialData(null);
               navigateTo(s);
             }}
+            onSelectProduct={(producto) => {
+              setInitialMenuProduct(producto);
+              navigateTo('menu');
+            }}
             onSelectActivity={handleSelectActivity}
             onSelectPromo={handleSelectPromo}
             actividades={ACTIVIDADES}
             promociones={PROMOCIONES}
+          />
+        )}
+
+        {/* MENÚ OFICIAL (CAROUSEL & DESKTOP/MÓVIL) */}
+        {activeScreen === 'menu' && (
+          <MenuScreen
+            initialProduct={initialMenuProduct}
+            onClearInitialProduct={() => setInitialMenuProduct(null)}
+            onOrderNow={(producto) => {
+              setReservationWizardInitialData({
+                notas: `Deseo ordenar en mi reservación: ${producto.nombreCompleto} (${producto.precio})`
+              });
+              navigateTo('reservar');
+            }}
+            onNavigate={navigateTo}
           />
         )}
 
@@ -373,6 +448,7 @@ export default function App() {
                 EXPLORAR CARTA & ESPACIOS
               </h4>
               <ul className="footer-nav-list font-body">
+                <li><button onClick={() => navigateTo('menu')}>Menú & Carrusel</button></li>
                 <li><button onClick={() => navigateTo('actividades')}>Actividades & Catas</button></li>
                 <li><button onClick={() => navigateTo('promociones')}>Promociones & Combos</button></li>
                 <li><button onClick={() => navigateTo('reservar')}>Reservar Mesa o Evento</button></li>

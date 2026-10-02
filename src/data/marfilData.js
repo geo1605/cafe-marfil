@@ -11,12 +11,12 @@
 
 export const SUCURSALES = [
   {
-    id: 'centro-historico',
-    nombre: 'Centro Histórico',
-    subtitulo: 'Casona colonial, terraza lúdica, cocina contundente y música en vivo',
-    direccion: 'Calle 5 de Febrero #704, Zona Centro, Durango, Dgo.',
-    horario: 'Lunes a Domingo: 8:00 AM – 11:30 PM (All-Day Dining)',
-    telefono: '(618) 811-2345',
+    id: 'porras-matriz',
+    nombre: 'Sucursal Porras (Matriz)',
+    subtitulo: 'Casona colonial, terraza lúdica, barra de especialidad y música en vivo',
+    direccion: 'Calle Porras #100, esq. Aquiles Serdán, Zona Centro, Durango, Dgo.',
+    horario: 'Lun a Sáb: 8:00 AM – 11:00 PM · Dom: 9:00 AM – 11:00 PM',
+    telefono: '(618) 170-6666',
     imagen: '/images/sucursal_centro.jpg',
     caracteristicas: [
       'Terraza colonial con vegetación',
@@ -26,43 +26,46 @@ export const SUCURSALES = [
       'Pet friendly en terraza'
     ],
     servicios: ['WiFi 150 Mbps', 'Enchufes en cada mesa', 'Coctelería y mezcal de Durango', 'Bicicletero'],
-    mapsUrl: 'https://maps.google.com/?q=Durango+Centro+Historico+Cafe+Marfil',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Cafe+Marfil+Calle+Porras+100+Durango',
+    mapEmbedUrl: 'https://maps.google.com/maps?q=Cafe+Marfil+Calle+Porras+100+Durango&t=&z=16&ie=UTF8&iwloc=&output=embed',
     destacada: true
   },
   {
-    id: 'paseo-constitucion',
-    nombre: 'Paseo Constitución',
-    subtitulo: 'Cafetería al aire libre en el andador peatonal histórico',
-    direccion: 'Andador Constitución #312, Zona Centro, Durango, Dgo.',
-    horario: 'Lunes a Domingo: 8:30 AM – 11:00 PM',
-    telefono: '(618) 825-6789',
+    id: 'calvario',
+    nombre: 'Sucursal Calvario',
+    subtitulo: 'Ambiente acogedor, salón de juegos de mesa, brunch y tardes de café',
+    direccion: 'Calle De la Cruz #302-B, Barrio del Calvario, Durango, Dgo.',
+    horario: 'Lun a Sáb: 8:00 AM – 11:00 PM · Dom: 9:00 AM – 11:00 PM',
+    telefono: '(618) 174-0702',
     imagen: '/images/hero_cafe.jpg',
     caracteristicas: [
-      'Mesas exteriores en andador peatonal',
       'Barra express de frappés y sodas italianas',
-      'Ambiente social y vibrante',
+      'Ludoteca y mesas para grupos',
+      'Ambiente cálido e iluminación íntima',
       'Pet friendly total'
     ],
-    servicios: ['Grab & Go', 'Fresas estilo Dubái al paso', 'Cervezas artesanales', 'WiFi'],
-    mapsUrl: 'https://maps.google.com/?q=Paseo+Constitucion+Durango+Cafe+Marfil',
+    servicios: ['Grab & Go', 'Fresas estilo Dubái al paso', 'WiFi de alta velocidad', 'Desayunos'],
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Cafe+Marfil+De+la+Cruz+302+Durango',
+    mapEmbedUrl: 'https://maps.google.com/maps?q=Calle+De+la+Cruz+302-B+Barrio+del+Calvario+Durango&t=&z=16&ie=UTF8&iwloc=&output=embed',
     destacada: false
   },
   {
-    id: 'lomas-del-parque',
-    nombre: 'Lomas del Parque',
-    subtitulo: 'Espacio contemporáneo para desayunos familiares, catas y cowork',
-    direccion: 'Blvd. Guadiana #140, Lomas del Parque, Durango, Dgo.',
-    horario: 'Lunes a Domingo: 7:30 AM – 10:30 PM',
-    telefono: '(618) 813-8890',
-    imagen: '/images/desayunos_marfil.jpg',
+    id: 'plaza-vizcaya',
+    nombre: 'Sucursal Plaza Vizcaya',
+    subtitulo: 'Terraza contemporánea al aire libre, pérgolas, desayunos y grab & go',
+    direccion: 'Av. 20 de Noviembre / Blvd. Dolores del Río, Plaza Vizcaya, Durango, Dgo.',
+    horario: 'Lunes a Domingo: 8:30 AM – 10:30 PM',
+    telefono: '(618) 825-6789',
+    imagen: '/images/sucursal_vizcaya.jpg',
     caracteristicas: [
-      'Salones amplios para grupos y familias',
-      'Laboratorio de café y repostería en vivo',
-      'Estacionamiento propio y valet',
-      'Terraza pet friendly'
+      'Terraza exterior con pérgolas de madera',
+      'Espacio moderno para cowork y familias',
+      'Estacionamiento amplio en plaza',
+      'Área pet friendly'
     ],
-    servicios: ['Estacionamiento privado', 'Salas de junta', 'Menú infantil', 'Pizzas de masa madre'],
-    mapsUrl: 'https://maps.google.com/?q=Lomas+del+Parque+Durango+Cafe+Marfil',
+    servicios: ['Estacionamiento privado', 'Acceso directo plaza', 'Menú infantil', 'Pizzas & Frappés'],
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Cafe+Marfil+Plaza+Vizcaya+Durango',
+    mapEmbedUrl: 'https://maps.google.com/maps?q=Plaza+Vizcaya+Durango&t=&z=16&ie=UTF8&iwloc=&output=embed',
     destacada: false
   }
 ];
